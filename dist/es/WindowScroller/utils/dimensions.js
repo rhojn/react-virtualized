@@ -15,15 +15,15 @@ export function getDimensions(scrollElement, props) {
   if (!scrollElement) {
     return {
       height: props.serverHeight,
-      width: props.serverWidth,
+      width: props.serverWidth
     };
   } else if (isWindow(scrollElement)) {
     var _window = window,
-      innerHeight = _window.innerHeight,
-      innerWidth = _window.innerWidth;
+        innerHeight = _window.innerHeight,
+        innerWidth = _window.innerWidth;
     return {
       height: typeof innerHeight === 'number' ? innerHeight : 0,
-      width: typeof innerWidth === 'number' ? innerWidth : 0,
+      width: typeof innerWidth === 'number' ? innerWidth : 0
     };
   } else {
     return getBoundingBox(scrollElement);
@@ -43,7 +43,7 @@ export function getPositionOffset(element, container) {
     var containerRect = getBoundingBox(containerElement);
     return {
       top: elementRect.top - containerRect.top,
-      left: elementRect.left - containerRect.left,
+      left: elementRect.left - containerRect.left
     };
   } else {
     var scrollOffset = getScrollOffset(container);
@@ -54,7 +54,7 @@ export function getPositionOffset(element, container) {
 
     return {
       top: _elementRect.top + scrollOffset.top - _containerRect.top,
-      left: _elementRect.left + scrollOffset.left - _containerRect.left,
+      left: _elementRect.left + scrollOffset.left - _containerRect.left
     };
   }
 }
@@ -66,19 +66,13 @@ export function getPositionOffset(element, container) {
 export function getScrollOffset(element) {
   if (isWindow(element) && document.documentElement) {
     return {
-      top:
-        'scrollY' in window
-          ? window.scrollY
-          : document.documentElement.scrollTop,
-      left:
-        'scrollX' in window
-          ? window.scrollX
-          : document.documentElement.scrollLeft,
+      top: 'scrollY' in window ? window.scrollY : document.documentElement.scrollTop,
+      left: 'scrollX' in window ? window.scrollX : document.documentElement.scrollLeft
     };
   } else {
     return {
       top: element.scrollTop,
-      left: element.scrollLeft,
+      left: element.scrollLeft
     };
   }
 }

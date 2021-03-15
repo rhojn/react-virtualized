@@ -1,10 +1,7 @@
-import {caf, raf} from './animationFrame';
-var bpfrpt_proptype_AnimationTimeoutId =
-  process.env.NODE_ENV === 'production'
-    ? null
-    : {
-        id: PropTypes.number.isRequired,
-      };
+import { caf, raf } from './animationFrame';
+var bpfrpt_proptype_AnimationTimeoutId = process.env.NODE_ENV === 'production' ? null : {
+  "id": PropTypes.number.isRequired
+};
 export var cancelAnimationTimeout = function cancelAnimationTimeout(frame) {
   return caf(frame.id);
 };
@@ -15,13 +12,10 @@ export var cancelAnimationTimeout = function cancelAnimationTimeout(frame) {
  * Credit: Joe Lambert (https://gist.github.com/joelambert/1002116#file-requesttimeout-js)
  */
 
-export var requestAnimationTimeout = function requestAnimationTimeout(
-  callback,
-  delay,
-) {
+export var requestAnimationTimeout = function requestAnimationTimeout(callback, delay) {
   var start; // wait for end of processing current event handler, because event handler may be long
 
-  Promise.resolve().then(function() {
+  Promise.resolve().then(function () {
     start = Date.now();
   });
 
@@ -34,9 +28,9 @@ export var requestAnimationTimeout = function requestAnimationTimeout(
   };
 
   var frame = {
-    id: raf(timeout),
+    id: raf(timeout)
   };
   return frame;
 };
-import PropTypes from 'prop-types';
-export {bpfrpt_proptype_AnimationTimeoutId};
+import PropTypes from "prop-types";
+export { bpfrpt_proptype_AnimationTimeoutId };

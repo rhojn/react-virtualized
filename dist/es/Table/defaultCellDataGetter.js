@@ -5,7 +5,7 @@
  */
 export default function defaultCellDataGetter(_ref) {
   var dataKey = _ref.dataKey,
-    rowData = _ref.rowData;
+      rowData = _ref.rowData;
 
   if (typeof rowData.get === 'function') {
     return rowData.get(dataKey);
@@ -13,4 +13,4 @@ export default function defaultCellDataGetter(_ref) {
     return rowData[dataKey];
   }
 }
-import {bpfrpt_proptype_CellDataGetterParams} from './types';
+import { bpfrpt_proptype_CellDataGetterParams } from "./types";

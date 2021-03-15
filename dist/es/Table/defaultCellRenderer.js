@@ -11,4 +11,4 @@ export default function defaultCellRenderer(_ref) {
     return String(cellData);
   }
 }
-import {bpfrpt_proptype_CellRendererParams} from './types';
+import { bpfrpt_proptype_CellRendererParams } from "./types";

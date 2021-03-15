@@ -37,11 +37,6 @@
     "watch": "watch 'clear && yarn run test -s' source",
     "watch:jest": "jest --no-watchman --watch"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  },
   "files": [
     "dist",
     "styles.css"

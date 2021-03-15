@@ -9,35 +9,23 @@ import SortDirection from './SortDirection';
 export default function SortIndicator(_ref) {
   var sortDirection = _ref.sortDirection;
   var classNames = clsx('ReactVirtualized__Table__sortableHeaderIcon', {
-    'ReactVirtualized__Table__sortableHeaderIcon--ASC':
-      sortDirection === SortDirection.ASC,
-    'ReactVirtualized__Table__sortableHeaderIcon--DESC':
-      sortDirection === SortDirection.DESC,
+    'ReactVirtualized__Table__sortableHeaderIcon--ASC': sortDirection === SortDirection.ASC,
+    'ReactVirtualized__Table__sortableHeaderIcon--DESC': sortDirection === SortDirection.DESC
   });
-  return /*#__PURE__*/ React.createElement(
-    'svg',
-    {
-      className: classNames,
-      width: 18,
-      height: 18,
-      viewBox: '0 0 24 24',
-    },
-    sortDirection === SortDirection.ASC
-      ? /*#__PURE__*/ React.createElement('path', {
-          d: 'M7 14l5-5 5 5z',
-        })
-      : /*#__PURE__*/ React.createElement('path', {
-          d: 'M7 10l5 5 5-5z',
-        }),
-    /*#__PURE__*/ React.createElement('path', {
-      d: 'M0 0h24v24H0z',
-      fill: 'none',
-    }),
-  );
+  return /*#__PURE__*/React.createElement("svg", {
+    className: classNames,
+    width: 18,
+    height: 18,
+    viewBox: "0 0 24 24"
+  }, sortDirection === SortDirection.ASC ? /*#__PURE__*/React.createElement("path", {
+    d: "M7 14l5-5 5 5z"
+  }) : /*#__PURE__*/React.createElement("path", {
+    d: "M7 10l5 5 5-5z"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M0 0h24v24H0z",
+    fill: "none"
+  }));
 }
-SortIndicator.propTypes =
-  process.env.NODE_ENV !== 'production'
-    ? {
-        sortDirection: PropTypes.oneOf([SortDirection.ASC, SortDirection.DESC]),
-      }
-    : {};
+SortIndicator.propTypes = process.env.NODE_ENV !== "production" ? {
+  sortDirection: PropTypes.oneOf([SortDirection.ASC, SortDirection.DESC])
+} : {};

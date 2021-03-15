@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
-  value: true,
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
-exports['default'] = getUpdatedOffsetForIndex;
+exports["default"] = getUpdatedOffsetForIndex;
 
 /**
  * Determines a new offset that ensures a certain cell is visible, given the current offset.
@@ -19,11 +19,11 @@ exports['default'] = getUpdatedOffsetForIndex;
  */
 function getUpdatedOffsetForIndex(_ref) {
   var _ref$align = _ref.align,
-    align = _ref$align === void 0 ? 'auto' : _ref$align,
-    cellOffset = _ref.cellOffset,
-    cellSize = _ref.cellSize,
-    containerSize = _ref.containerSize,
-    currentOffset = _ref.currentOffset;
+      align = _ref$align === void 0 ? 'auto' : _ref$align,
+      cellOffset = _ref.cellOffset,
+      cellSize = _ref.cellSize,
+      containerSize = _ref.containerSize,
+      currentOffset = _ref.currentOffset;
   var maxOffset = cellOffset;
   var minOffset = maxOffset - containerSize + cellSize;
 

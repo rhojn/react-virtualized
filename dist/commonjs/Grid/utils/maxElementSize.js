@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
-  value: true,
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
 exports.getMaxElementSize = void 0;
 var DEFAULT_MAX_ELEMENT_SIZE = 1500000;

@@ -1,15 +1,13 @@
-'use strict';
+"use strict";
 
-var _interopRequireDefault = require('@babel/runtime/helpers/interopRequireDefault');
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-Object.defineProperty(exports, '__esModule', {
-  value: true,
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
-exports['default'] = createWrapper;
+exports["default"] = createWrapper;
 
-var _binarySearchBounds = _interopRequireDefault(
-  require('./binarySearchBounds'),
-);
+var _binarySearchBounds = _interopRequireDefault(require("./binarySearchBounds"));
 
 /**
  * Binary Search Bounds
@@ -29,8 +27,7 @@ function IntervalTreeNode(mid, left, right, leftPoints, rightPoints) {
   this.right = right;
   this.leftPoints = leftPoints;
   this.rightPoints = rightPoints;
-  this.count =
-    (left ? left.count : 0) + (right ? right.count : 0) + leftPoints.length;
+  this.count = (left ? left.count : 0) + (right ? right.count : 0) + leftPoints.length;
 }
 
 var proto = IntervalTreeNode.prototype;
@@ -73,7 +70,7 @@ function rebuildWithoutInterval(node, interval) {
   return SUCCESS;
 }
 
-proto.intervals = function(result) {
+proto.intervals = function (result) {
   result.push.apply(result, this.leftPoints);
 
   if (this.left) {
@@ -87,7 +84,7 @@ proto.intervals = function(result) {
   return result;
 };
 
-proto.insert = function(interval) {
+proto.insert = function (interval) {
   var weight = this.count - this.leftPoints.length;
   this.count += 1;
 
@@ -112,24 +109,16 @@ proto.insert = function(interval) {
       this.right = createIntervalTree([interval]);
     }
   } else {
-    var l = _binarySearchBounds['default'].ge(
-      this.leftPoints,
-      interval,
-      compareBegin,
-    );
+    var l = _binarySearchBounds["default"].ge(this.leftPoints, interval, compareBegin);
 
-    var r = _binarySearchBounds['default'].ge(
-      this.rightPoints,
-      interval,
-      compareEnd,
-    );
+    var r = _binarySearchBounds["default"].ge(this.rightPoints, interval, compareEnd);
 
     this.leftPoints.splice(l, 0, interval);
     this.rightPoints.splice(r, 0, interval);
   }
 };
 
-proto.remove = function(interval) {
+proto.remove = function (interval) {
   var weight = this.count - this.leftPoints;
 
   if (interval[1] < this.mid) {
@@ -207,10 +196,7 @@ proto.remove = function(interval) {
         }
 
         copy(this, n);
-        this.count =
-          (this.left ? this.left.count : 0) +
-          (this.right ? this.right.count : 0) +
-          this.leftPoints.length;
+        this.count = (this.left ? this.left.count : 0) + (this.right ? this.right.count : 0) + this.leftPoints.length;
       } else if (this.left) {
         copy(this, this.left);
       } else {
@@ -220,15 +206,7 @@ proto.remove = function(interval) {
       return SUCCESS;
     }
 
-    for (
-      var l = _binarySearchBounds['default'].ge(
-        this.leftPoints,
-        interval,
-        compareBegin,
-      );
-      l < this.leftPoints.length;
-      ++l
-    ) {
+    for (var l = _binarySearchBounds["default"].ge(this.leftPoints, interval, compareBegin); l < this.leftPoints.length; ++l) {
       if (this.leftPoints[l][0] !== interval[0]) {
         break;
       }
@@ -237,15 +215,7 @@ proto.remove = function(interval) {
         this.count -= 1;
         this.leftPoints.splice(l, 1);
 
-        for (
-          var r = _binarySearchBounds['default'].ge(
-            this.rightPoints,
-            interval,
-            compareEnd,
-          );
-          r < this.rightPoints.length;
-          ++r
-        ) {
+        for (var r = _binarySearchBounds["default"].ge(this.rightPoints, interval, compareEnd); r < this.rightPoints.length; ++r) {
           if (this.rightPoints[r][1] !== interval[1]) {
             break;
           } else if (this.rightPoints[r] === interval) {
@@ -290,7 +260,7 @@ function reportRange(arr, cb) {
   }
 }
 
-proto.queryPoint = function(x, cb) {
+proto.queryPoint = function (x, cb) {
   if (x < this.mid) {
     if (this.left) {
       var r = this.left.queryPoint(x, cb);
@@ -316,7 +286,7 @@ proto.queryPoint = function(x, cb) {
   }
 };
 
-proto.queryInterval = function(lo, hi, cb) {
+proto.queryInterval = function (lo, hi, cb) {
   if (lo < this.mid && this.left) {
     var r = this.left.queryInterval(lo, hi, cb);
 
@@ -395,18 +365,14 @@ function createIntervalTree(intervals) {
     }
   } //Split center intervals
 
+
   var leftPoints = centerIntervals;
   var rightPoints = centerIntervals.slice();
   leftPoints.sort(compareBegin);
   rightPoints.sort(compareEnd);
-  return new IntervalTreeNode(
-    mid,
-    createIntervalTree(leftIntervals),
-    createIntervalTree(rightIntervals),
-    leftPoints,
-    rightPoints,
-  );
+  return new IntervalTreeNode(mid, createIntervalTree(leftIntervals), createIntervalTree(rightIntervals), leftPoints, rightPoints);
 } //User friendly wrapper that makes it possible to support empty trees
+
 
 function IntervalTree(root) {
   this.root = root;
@@ -414,21 +380,15 @@ function IntervalTree(root) {
 
 var tproto = IntervalTree.prototype;
 
-tproto.insert = function(interval) {
+tproto.insert = function (interval) {
   if (this.root) {
     this.root.insert(interval);
   } else {
-    this.root = new IntervalTreeNode(
-      interval[0],
-      null,
-      null,
-      [interval],
-      [interval],
-    );
+    this.root = new IntervalTreeNode(interval[0], null, null, [interval], [interval]);
   }
 };
 
-tproto.remove = function(interval) {
+tproto.remove = function (interval) {
   if (this.root) {
     var r = this.root.remove(interval);
 
@@ -442,13 +402,13 @@ tproto.remove = function(interval) {
   return false;
 };
 
-tproto.queryPoint = function(p, cb) {
+tproto.queryPoint = function (p, cb) {
   if (this.root) {
     return this.root.queryPoint(p, cb);
   }
 };
 
-tproto.queryInterval = function(lo, hi, cb) {
+tproto.queryInterval = function (lo, hi, cb) {
   if (lo <= hi && this.root) {
     return this.root.queryInterval(lo, hi, cb);
   }
@@ -461,7 +421,7 @@ Object.defineProperty(tproto, 'count', {
     }
 
     return 0;
-  },
+  }
 });
 Object.defineProperty(tproto, 'intervals', {
   get: function get() {
@@ -470,7 +430,7 @@ Object.defineProperty(tproto, 'intervals', {
     }
 
     return [];
-  },
+  }
 });
 
 function createWrapper(intervals) {
