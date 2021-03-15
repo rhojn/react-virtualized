@@ -28,7 +28,7 @@
     "prettier": "prettier --write '{playground,source,docs}/**/*.{js,md}'",
     "prettier:diff": "prettier --list-different '{playground,source,docs}/**/*.{js,md}'",
     "postpublish": "yarn run deploy",
-    "postinstall": "yarn run deploy",
+    "postinstall": "yarn run build",
     "prepublishOnly": "yarn run build",
     "prepare": "yarn run build",
     "start": "cross-env NODE_ENV=development webpack-dev-server --hot --config webpack.config.dev.js",
