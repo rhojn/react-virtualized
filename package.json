@@ -33,6 +33,7 @@
     "prettier:diff": "prettier --list-different '{playground,source}/**/*.js'",
     "postpublish": "npm run deploy",
     "prepublish": "npm run build",
+    "postinstall": "npm run build",
     "start": "cross-env NODE_ENV=development webpack-dev-server --hot --config webpack.config.dev.js",
     "test": "npm run test:jest",
     "test:jest": "jest --no-watchman --runInBand",
